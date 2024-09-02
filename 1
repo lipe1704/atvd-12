@@ -1,0 +1,47 @@
+//1. Escreva um programa em C que contenha uma matriz quadrada de ordem 10. O programa deve gerar
+//números inteiros aleatórios distintos (não repetidos) para a matriz, apresentar seus elementos na tela e
+//indicar os índices de linha e coluna onde está o maior valor. */
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <time.h>
+void aleatorio (int num[], int qtd){
+    for (int i = qtd - 1; i > 0; i--) {
+        int j = rand() % (i + 1);  
+        int temp = num[i];
+        num[i] = num[j];
+        num[j] = temp;           
+    }
+}
+int main () {
+    #define qtd 100
+    
+    int vet[10][10];
+    int num[100];
+    
+    srand(time(NULL));
+    
+    for (int i=0; i<100; i++){
+        num[i]=i+1;
+    }
+    
+    aleatorio (num, qtd);
+    
+    int index=0;
+    int maior_valor=0;
+    int maior_linha;
+    int maior_coluna;
+    
+    for (int i=0; i<10; i++){
+        for (int j=0; j<10; j++){
+            vet[i][j]= num[index++];
+            printf ("%4d", vet[i][j]);
+            if (vet[i][j]>maior_valor){
+                maior_valor=vet[i][j];
+                maior_linha = i;
+                maior_coluna = j;
+            }
+        }
+        printf ("\n"); 
+    }
+    printf("\no maior valor é : [%i] [%i] ", maior_linha, maior_coluna);
+}
